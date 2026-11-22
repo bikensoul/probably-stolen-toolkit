@@ -5,6 +5,9 @@
    and a link in the nav in index.html. */
 
 const Toolkit = { tools: {} };
+// Bump the version in index.html (meta "toolkit-version" and every ?v=) on each update,
+// so browsers load the new files instead of cached ones.
+const VERSION = document.querySelector('meta[name="toolkit-version"]')?.content || Date.now();
 const TOOLS = ["home", "water", "plasma", "chemist", "projector"];
 
 /* ---------- remembered inputs (this browser only) ---------- */
@@ -99,7 +102,7 @@ window.addEventListener("hashchange", () => { showTab(); window.scrollTo(0, 0); 
 window.addEventListener("DOMContentLoaded", async () => {
   const page = document.getElementById("page");
   const html = await Promise.all(TOOLS.map(t =>
-    fetch(`tools/${t}.html`).then(r => r.ok ? r.text() : Promise.reject(r.status))
+    fetch(`tools/${t}.html?v=${VERSION}`, { cache: "no-cache" }).then(r => r.ok ? r.text() : Promise.reject(r.status))
       .catch(err => `<div class="tab" id="${t}"><section class="msg-error">Could not load this tool (${err}).</section></div>`)));
   page.innerHTML = html.join("\n");
   for (const t of TOOLS) {

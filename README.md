@@ -28,6 +28,10 @@ Without a `#tool` in the address, the site opens the tool used last, or Home on 
 
 Inputs with an `id` are remembered in the visitor's browser automatically. Wrap markup in `data-nosave` to opt out.
 
+### Releasing an update
+
+Change the version in `index.html` (the `toolkit-version` meta tag and every `?v=` on the css/js links) so browsers don't keep using cached files.
+
 ### Running locally
 
 The tools are loaded with `fetch`, so open the site through a local web server rather than as a file, e.g. `python3 -m http.server` in this folder, then http://localhost:8000.

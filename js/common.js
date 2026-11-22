@@ -5,7 +5,7 @@
    and a link in the nav in index.html. */
 
 const Toolkit = { tools: {} };
-const TOOLS = ["water", "plasma", "chemist", "projector"];
+const TOOLS = ["home", "water", "plasma", "chemist", "projector"];
 
 /* ---------- remembered inputs (this browser only) ---------- */
 const STORE_PREFIX = "ps:";
@@ -76,8 +76,16 @@ function pours(ml) {
   return `<div class="pour">Pour: ${parts.join(" + ")}</div>`;
 }
 /* ---------- tabs ---------- */
+// Opens the tab in the address (#water …). Without one: the tab used last time,
+// or the Home page on a first visit.
 function showTab() {
-  const name = TOOLS.includes(location.hash.slice(1)) ? location.hash.slice(1) : TOOLS[0];
+  let name = location.hash.slice(1);
+  if (!TOOLS.includes(name)) {
+    const last = store.get("lastTab");
+    name = TOOLS.includes(last) ? last : "home";
+    history.replaceState(null, "", "#" + name);
+  }
+  if (!saveBlocked) store.set("lastTab", name);
   TOOLS.forEach(t => { const el = document.getElementById(t); if (el) el.classList.toggle("active", t === name); });
   document.querySelectorAll("#tabs a").forEach(a => {
     const on = a.getAttribute("href") === "#" + name;

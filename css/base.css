@@ -56,7 +56,7 @@ nav a .short { display: none; }
 @media (max-width: 600px) {
   .top-inner { padding: 10px 12px 0; }
   .brand { margin-bottom: 6px; }
-  nav a { padding: 8px 11px; font-size: 14px; }
+  nav a { padding: 8px 9px; font-size: 14px; }
   nav a .long { display: none; }
   nav a .short { display: inline; }
   .page { padding: 16px 12px 40px; }

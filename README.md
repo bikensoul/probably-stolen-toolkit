@@ -16,7 +16,9 @@ js/<tool>.js        logic for one tool (registers Toolkit.tools.<tool>)
 img/                pictures used by the tools
 ```
 
-Tools: `water`, `plasma`, `chemist`, `projector`.
+Tools: `home` (landing page), `water`, `plasma`, `chemist`, `projector`.
+
+Without a `#tool` in the address, the site opens the tool used last, or Home on a first visit.
 
 ### Adding a tool
 

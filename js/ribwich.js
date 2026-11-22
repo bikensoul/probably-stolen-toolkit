@@ -7,11 +7,6 @@ Toolkit.tools.ribwich = () => {
   const sign = n => (n > 0 ? "+" : n < 0 ? "−" : "±") + Math.abs(n);
   const pad = n => String(n).padStart(2, "0");
 
-  // "01/433", "1/433", "01-433", "01.433" -> { m, y }
-  function parseDate(txt) {
-    const m = /^\s*(\d{1,2})\s*[\/.\-\s]\s*(\d{3})\s*$/.exec(txt || "");
-    return m ? { m: +m[1], y: +m[2] } : null;
-  }
   function run(d) {
     if (!d || d.m < 1 || d.m > 12) return 0;
     if (d.y >= 425 && d.y <= 429) return 1;
@@ -24,19 +19,23 @@ Toolkit.tools.ribwich = () => {
     const packed = q("input[name=rpack]:checked").value === "ok";
     if (!packed) fake.push("packaging missing or torn open");
 
-    // production date
-    const dateTxt = q("#rDate").value, missing = q("#rDateMissing").checked;
-    q("#rDate").disabled = missing;
-    const d = missing ? null : parseDate(dateTxt), r = run(d);
+    // production date: month and year boxes
+    const mTxt = q("#rMonth").value, yTxt = q("#rYear").value, missing = q("#rDateMissing").checked;
+    q("#rMonth").disabled = q("#rYear").disabled = missing;
+    const mm = parseFloat(mTxt), yy = parseFloat(yTxt);
+    const filled = mTxt !== "" && yTxt !== "";
+    const d = !missing && filled ? { m: mm, y: yy } : null;
+    const validMonth = d && Number.isInteger(mm) && mm >= 1 && mm <= 12 && Number.isInteger(yy);
+    const r = validMonth ? run(d) : 0;
     let dateMsg = "";
     if (missing) { fake.push("no production date"); dateMsg = `<span class="bad">No date → counterfeit</span>`; }
-    else if (!dateTxt.trim()) dateMsg = `<span class="note" style="margin:0">Enter the date as printed, e.g. 01/433.</span>`;
-    else if (!d) { fake.push("production date not readable as MM/YYY"); dateMsg = `<span class="bad">Not a valid date → counterfeit</span>`; }
-    else if (!r) { fake.push(`date ${pad(d.m)}/${d.y} outside the production runs`); dateMsg = `<span class="bad">${pad(d.m)}/${d.y} is outside both production runs → counterfeit</span>`; }
+    else if (!filled) dateMsg = `<span class="note" style="margin:0">Enter month and year as printed, e.g. 01 / 433.</span>`;
+    else if (!validMonth) { fake.push(`${mTxt}/${yTxt} is not a valid date`); dateMsg = `<span class="bad">${mTxt}/${yTxt} is not a valid date → counterfeit</span>`; }
+    else if (!r) { fake.push(`date ${pad(mm)}/${yy} outside the production runs`); dateMsg = `<span class="bad">${pad(mm)}/${yy} is outside both production runs → counterfeit</span>`; }
     else {
-      dateMsg = `<span class="ok">${pad(d.m)}/${d.y}: ${r === 1 ? "1st" : "2nd"} production run</span>`;
+      dateMsg = `<span class="ok">${pad(mm)}/${yy}: ${r === 1 ? "1st" : "2nd"} production run</span>`;
       if (r === 1) lines.push(["1st production run", 80]);
-      if ((d.m === 1 && d.y === 425) || (d.m === 12 && d.y === 438)) { lines.push(["Very first / last month", 50]); dateMsg += ` <span class="ok">· historic month</span>`; }
+      if ((mm === 1 && yy === 425) || (mm === 12 && yy === 438)) { lines.push(["Very first / last month", 50]); dateMsg += ` <span class="ok">· historic month</span>`; }
     }
     q("#rDateRes").innerHTML = dateMsg;
 
@@ -60,12 +59,14 @@ Toolkit.tools.ribwich = () => {
     if (q("#rDouble").checked) lines.push(["Double meat patty", 800]);
 
     // logos
-    const logo = q("input[name=rlogo]:checked").value;
-    if (logo !== "ok") fake.push(logo === "none" ? "Davre logo missing" : "Davre logo incorrect");
+    if (q("input[name=rlogo]:checked").value !== "ok") fake.push("Davre logo wrong or missing");
+    // Sticker: required and genuine on the 2nd run. The 1st run never has one,
+    // so there "Wrong / fake" means a sticker is present at all.
     const sticker = q("input[name=rsticker]:checked").value;
-    if (sticker === "bad") fake.push("Ribwich sticker incorrect");
-    else if (r === 2 && sticker === "none") fake.push("2nd-run Ribwich without a sticker");
-    else if (r === 1 && sticker === "ok") fake.push("1st-run Ribwich with a sticker (1st run never had one)");
+    q("#rStickerNote").innerHTML = r === 1
+      ? "<b>1st run:</b> these never have a sticker. No sticker → leave on Genuine. Any sticker → choose Wrong / fake."
+      : "2nd-run Ribwiches must have the genuine sticker. 1st-run Ribwiches never have one.";
+    if (sticker === "bad") fake.push(r === 1 ? "1st-run Ribwich with a sticker" : "Ribwich sticker wrong or missing");
 
     // result
     const sub = lines.reduce((a, l) => a + l[1], 0);
@@ -91,7 +92,7 @@ Toolkit.tools.ribwich = () => {
   q("#rReset").onclick = () => {
     root.querySelectorAll("input[type=checkbox]").forEach(c => c.checked = false);
     ["rpack", "rlogo", "rsticker"].forEach(n => q(`input[name=${n}]`).checked = true);
-    q("#rDate").value = ""; q("#rFac").value = "";
+    q("#rMonth").value = ""; q("#rYear").value = ""; q("#rFac").value = "";
     update(); document.getElementById("appraiser").scrollIntoView({ behavior: "smooth" });
   };
   root.querySelector(".mtotal a").onclick = e => { e.preventDefault(); q("#rTotalAnchor").scrollIntoView({ behavior: "smooth" }); };

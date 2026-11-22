@@ -167,7 +167,9 @@
       <section>
         <h2>2 · Production date</h2>
         <div class="rfields">
-          <label class="rfield"><span>Date on the packaging (MM/YYY)</span><input type="text" id="rDate" inputmode="numeric" placeholder="e.g. 01/433" autocomplete="off"></label>
+          <label class="rfield short"><span>Month</span><input type="number" id="rMonth" min="1" max="12" step="1" placeholder="MM"></label>
+          <span class="rslash">/</span>
+          <label class="rfield short"><span>Year</span><input type="number" id="rYear" min="0" max="999" step="1" placeholder="YYY"></label>
           <label class="opt inline"><input type="checkbox" id="rDateMissing"><span class="name">No date / unreadable</span></label>
         </div>
         <div class="rcheck" id="rDateRes"></div>
@@ -204,8 +206,7 @@
         <h2>6 · Davre logo</h2>
         <div class="opts icons">
           <label class="opt"><img src="img/ribwich/davre_ok.png" alt=""><input type="radio" name="rlogo" value="ok" checked><span class="name">Genuine</span><span class="val zero">±0</span></label>
-          <label class="opt"><img src="img/ribwich/davre_bad.png" alt=""><input type="radio" name="rlogo" value="bad"><span class="name">Incorrect</span><span class="val neg">fake</span></label>
-          <label class="opt"><input type="radio" name="rlogo" value="none"><span class="name">Missing</span><span class="val neg">fake</span></label>
+          <label class="opt"><img src="img/ribwich/davre_bad.png" alt=""><input type="radio" name="rlogo" value="bad"><span class="name">Wrong / fake<span class="hint">incorrect or missing</span></span><span class="val neg">fake</span></label>
         </div>
       </section>
 
@@ -213,10 +214,9 @@
         <h2>7 · Ribwich sticker</h2>
         <div class="opts icons">
           <label class="opt"><img src="img/ribwich/sticker_ok.png" alt=""><input type="radio" name="rsticker" value="ok" checked><span class="name">Genuine</span></label>
-          <label class="opt"><img src="img/ribwich/sticker_bad.png" alt=""><input type="radio" name="rsticker" value="bad"><span class="name">Incorrect</span><span class="val neg">fake</span></label>
-          <label class="opt"><input type="radio" name="rsticker" value="none"><span class="name">No sticker</span></label>
+          <label class="opt"><img src="img/ribwich/sticker_bad.png" alt=""><input type="radio" name="rsticker" value="bad"><span class="name">Wrong / fake<span class="hint">incorrect or missing</span></span><span class="val neg">fake</span></label>
         </div>
-        <p class="why">2nd-run Ribwiches must have the genuine sticker. 1st-run Ribwiches never have one.</p>
+        <p class="why" id="rStickerNote">2nd-run Ribwiches must have the genuine sticker. 1st-run Ribwiches never have one.</p>
       </section>
     </div>
 

@@ -1,0 +1,146 @@
+<div class="tab" id="appraiser" data-nosave>
+  <h1>Appraiser</h1>
+  <p class="sub">Tick what you see. The price updates as you go.</p>
+  <div class="apick" id="apick">
+    <button data-pick="plasma">Plasma Cartridge</button>
+    <button data-pick="hands">Cybernetic Hand</button>
+  </div>
+
+<div class="appraisal" id="plasma" data-item="plasma">
+  <h2 class="atitle">Plasma Cartridge</h2>
+  <p class="sub">Based on the Station Trade Commission guide.</p>
+
+  <div class="layout">
+    <div>
+      <section>
+        <h2>1 · Wear (left end cap)</h2>
+        <div class="opts">
+          <label class="opt"><img src="img/wear_none.png" alt=""><input type="radio" name="wear" value="0" checked><span class="name">No wear</span><span class="val zero">±0</span></label>
+          <label class="opt"><img src="img/wear_light.png" alt=""><input type="radio" name="wear" value="-45"><span class="name">Light wear<span class="hint">small scuffs on the cap</span></span><span class="val neg">−45</span></label>
+          <label class="opt"><img src="img/wear_heavy.png" alt=""><input type="radio" name="wear" value="-90"><span class="name">Heavy wear<span class="hint">cap visibly damaged</span></span><span class="val neg">−90</span></label>
+        </div>
+      </section>
+
+      <section>
+        <h2>2 · Other condition</h2>
+        <div class="opts">
+          <label class="opt"><img src="img/cracked.png" alt=""><input type="checkbox" id="cracked"><span class="name">Cracked<span class="hint">cracks in the glass</span></span><span class="val neg">−150</span></label>
+          <label class="opt"><img src="img/screws.png" alt=""><input type="checkbox" id="screws"><span class="name">Exposed screws<span class="hint">screw heads on the caps</span></span><span class="val neg">−30</span></label>
+          <label class="opt"><img src="img/reinforced.png" alt=""><input type="checkbox" id="reinforced"><span class="name">Reinforced<span class="hint">metal bands around the tube</span></span><span class="val pos">+60</span></label>
+        </div>
+      </section>
+
+      <section>
+        <h2>3 · Plasma colour</h2>
+        <div class="opts">
+          <label class="opt"><img src="img/col_std.png" alt=""><input type="radio" name="color" value="standard" checked><span class="name">Standard<span class="hint">dark blue with teal</span></span><span class="val zero">±0</span></label>
+          <label class="opt"><img src="img/col_low.png" alt=""><input type="radio" name="color" value="low"><span class="name">Low-grade<span class="hint">any other colour (green, grey…)</span></span><span class="val neg">−150</span></label>
+          <label class="opt"><img src="img/col_high.png" alt=""><input type="radio" name="color" value="high"><span class="name">High-grade<span class="hint">purple / magenta</span></span><span class="val pos">+150</span></label>
+        </div>
+      </section>
+
+      <section>
+        <h2>4 · Manufacturer seal</h2>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="mfr" value="none" checked><span class="name">No seal / unknown</span><span class="val zero">±0</span></label>
+          <label class="opt"><img src="img/seal_WLD.png" alt=""><input type="radio" name="mfr" value="WLD"><span class="name">WLD – Wild's Rides<span class="hint">dark, plain seal</span></span><span class="val pos">+60*</span></label>
+          <label class="opt"><img src="img/seal_ZHS.png" alt=""><input type="radio" name="mfr" value="ZHS"><span class="name">ZHS – ZhongHua<span class="hint">red round "中" seal</span></span><span class="val pos">+120*</span></label>
+          <label class="opt"><img src="img/seal_RNR.png" alt=""><input type="radio" name="mfr" value="RNR"><span class="name">RNR – Republic Naval<span class="hint">blue crosshair seal</span></span><span class="val pos">+120*</span></label>
+          <label class="opt"><img src="img/seal_IGN.png" alt=""><input type="radio" name="mfr" value="IGN"><span class="name">IGN – Ignition Lab<span class="hint">"Ignition Lab" planet seal</span></span><span class="val pos">+750*</span></label>
+        </div>
+        <p class="why">* Only if the cartridge matches that manufacturer's profile exactly. The calculator checks this for you.</p>
+      </section>
+    </div>
+
+    <div class="mtotal" aria-hidden="true"><span>Appraised value</span><b id="pTotalMobile">300</b><span>Credits</span><a href="#pTotalAnchor">details ↓</a></div>
+
+    <aside id="pTotalAnchor">
+      <section>
+        <h2>Appraised value</h2>
+        <div class="total" id="pTotal">300 <small>Credits</small></div>
+        <div id="pBreakdown" style="margin-top:12px"></div>
+        <div class="why" id="pWhy"></div>
+        <button id="pReset" class="primary wide">New cartridge (reset)</button>
+        <details>
+          <summary>Manufacturer rules</summary>
+          <table>
+            <tr><th></th><th>Condition</th><th>Colour</th><th>Bonus</th></tr>
+            <tr><td>WLD</td><td>Any</td><td>Low-grade or Standard</td><td>+60</td></tr>
+            <tr><td>ZHS</td><td>None or Reinforced only</td><td>Standard</td><td>+120</td></tr>
+            <tr><td>RNR</td><td>Any except cracks</td><td>Standard</td><td>+120</td></tr>
+            <tr><td>IGN</td><td>None at all</td><td>High-grade</td><td>+750</td></tr>
+          </table>
+          <p>Base value 300, minimum value 90. All manufacturers always carry a seal.</p>
+        </details>
+      </section>
+    </aside>
+  </div>
+</div>
+
+<div class="appraisal" id="hands" data-item="hands">
+  <h2 class="atitle">Cybernetic Hand</h2>
+  <p class="sub">Based on the Station Trade Commission guide.</p>
+
+  <div class="layout">
+    <div>
+      <section>
+        <h2>1 · Material</h2>
+        <div class="opts">
+          <label class="opt"><img src="img/hands/mat_alu.png" alt=""><input type="radio" name="hmat" value="alu" checked><span class="name">Aluminum Alloy<span class="hint">silver-grey</span></span><span class="val zero">±0</span></label>
+          <label class="opt"><img src="img/hands/mat_carbon.png" alt=""><input type="radio" name="hmat" value="carbon"><span class="name">Carbon Composite<span class="hint">dark, striped</span></span><span class="val pos">+50</span></label>
+          <label class="opt"><img src="img/hands/mat_gold.png" alt=""><input type="radio" name="hmat" value="gold"><span class="name">Gold Plated<span class="hint">gold with white tips</span></span><span class="val pos">+200</span></label>
+        </div>
+      </section>
+
+      <section>
+        <h2>2 · Condition</h2>
+        <div class="opts">
+          <label class="opt"><img src="img/hands/cond_none.png" alt=""><input type="radio" name="hcond" value="0" checked><span class="name">None<span class="hint">clean surface</span></span><span class="val zero">±0</span></label>
+          <label class="opt"><img src="img/hands/cond_wear.png" alt=""><input type="radio" name="hcond" value="-35"><span class="name">Wears<span class="hint">scratches and scuffs</span></span><span class="val neg">−35</span></label>
+          <label class="opt"><img src="img/hands/cond_damage.png" alt=""><input type="radio" name="hcond" value="-85"><span class="name">Damages<span class="hint">open casing, exposed parts</span></span><span class="val neg">−85</span></label>
+        </div>
+      </section>
+
+      <section>
+        <h2>3 · Control interface</h2>
+        <div class="opts icons">
+          <label class="opt"><img src="img/hands/ctl_emg.png" alt=""><input type="radio" name="hctl" value="emg" checked><span class="name">EMG</span><span class="val zero">±0</span></label>
+          <label class="opt"><img src="img/hands/ctl_emgplus.png" alt=""><input type="radio" name="hctl" value="emgplus"><span class="name">EMG+</span><span class="val pos">+45</span></label>
+          <label class="opt"><img src="img/hands/ctl_ni.png" alt=""><input type="radio" name="hctl" value="ni"><span class="name">Neural Interface<span class="hint">"NI" symbol</span></span><span class="val pos">+120</span></label>
+          <label class="opt"><input type="radio" name="hctl" value="none"><span class="name">Unspecified<span class="hint">no symbol</span></span><span class="val neg">−60</span></label>
+        </div>
+      </section>
+
+      <section>
+        <h2>4 · Add-ons</h2>
+        <div class="opts">
+          <label class="opt"><img src="img/hands/add_armored.png" alt=""><input type="checkbox" id="hArmored"><span class="name">Armored<span class="hint">plate over the back of the hand</span></span><span class="val pos">+50</span></label>
+          <label class="opt"><img src="img/hands/add_blade.png" alt=""><input type="checkbox" id="hBlade"><span class="name">Blade<span class="hint">blade along the side</span></span><span class="val pos">+80</span></label>
+        </div>
+        <p class="why">Each add-on counts on its own, so both can apply.</p>
+      </section>
+    </div>
+
+    <div class="mtotal" aria-hidden="true"><span>Appraised value</span><b id="hTotalMobile">100</b><span>Credits</span><a href="#hTotalAnchor">details ↓</a></div>
+
+    <aside id="hTotalAnchor">
+      <section>
+        <h2>Appraised value</h2>
+        <div class="total" id="hTotal">100 <small>Credits</small></div>
+        <div id="hBreakdown" style="margin-top:12px"></div>
+        <div class="why" id="hWhy"></div>
+        <button id="hReset" class="primary wide">New hand (reset)</button>
+        <details>
+          <summary>Set bonus rules</summary>
+          <table>
+            <tr><th>Set</th><th>Needs</th><th>Bonus</th></tr>
+            <tr><td>Tactical</td><td>Carbon Composite, EMG+ or Neural Interface, no wear or damage, Armored and Blade</td><td>+100</td></tr>
+            <tr><td>Deluxe</td><td>Gold Plated, Neural Interface, no wear or damage, any add-ons</td><td>+200</td></tr>
+          </table>
+          <p>Base value 100, minimum value 50.</p>
+        </details>
+      </section>
+    </aside>
+  </div>
+</div>
+</div>

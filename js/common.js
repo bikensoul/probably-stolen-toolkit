@@ -8,7 +8,9 @@ const Toolkit = { tools: {} };
 // Bump the version in index.html (meta "toolkit-version" and every ?v=) on each update,
 // so browsers load the new files instead of cached ones.
 const VERSION = document.querySelector('meta[name="toolkit-version"]')?.content || Date.now();
-const TOOLS = ["home", "water", "plasma", "chemist", "projector"];
+const TOOLS = ["home", "water", "appraiser", "chemist", "projector"];
+// Old or direct links to an item inside a tab: #plasma opens the Appraiser on that item.
+const ALIASES = { plasma: "appraiser", hands: "appraiser" };
 
 /* ---------- remembered inputs (this browser only) ---------- */
 const STORE_PREFIX = "ps:";
@@ -83,8 +85,14 @@ function pours(ml) {
 // or the Home page on a first visit.
 function showTab() {
   let name = location.hash.slice(1);
+  if (ALIASES[name]) {
+    const item = name; name = ALIASES[name];
+    store.set("appraiserItem", item);
+    if (Toolkit.pickAppraisal) Toolkit.pickAppraisal(item);
+    history.replaceState(null, "", "#" + name);
+  }
   if (!TOOLS.includes(name)) {
-    const last = store.get("lastTab");
+    let last = store.get("lastTab"); if (ALIASES[last]) last = ALIASES[last];
     name = TOOLS.includes(last) ? last : "home";
     history.replaceState(null, "", "#" + name);
   }

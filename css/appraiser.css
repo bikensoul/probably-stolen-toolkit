@@ -1,0 +1,58 @@
+/* ---------- appraiser (shared by all items) ---------- */
+.appraisal .layout { display: grid; grid-template-columns: 1fr 320px; gap: 16px; align-items: start; }
+@media (max-width: 760px) { .appraisal .layout { grid-template-columns: 1fr; } }
+.appraisal .opts { display: grid; gap: 6px; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+.appraisal label.opt { display:grid; grid-template-columns: auto 1fr auto; align-items:center; gap: 8px 10px; padding: 9px 11px;
+            border:1px solid var(--line); border-radius: 8px; cursor: pointer; user-select: none; }
+.appraisal label.opt:hover { border-color: var(--accent); }
+.appraisal label.opt:has(input:checked) { background: var(--sel); border-color: var(--accent); }
+.appraisal label.opt input { width: 17px; height: 17px; margin: 0; accent-color: var(--accent); }
+.appraisal label.opt img { grid-column: 1 / -1; width: auto; height: 96px; justify-self: center;
+            image-rendering: pixelated; border-radius: 4px; display:block; }
+.appraisal .name { flex: 1; }
+.appraisal .hint { display:block; font-size: 12px; color: var(--muted); }
+.appraisal .val { font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+.appraisal .pos { color: var(--good); } .appraisal .neg { color: var(--bad); } .appraisal .zero { color: var(--muted); font-weight: 500; }
+.appraisal aside { position: sticky; top: 110px; }
+.appraisal .total { font-size: 42px; font-weight: 800; color: var(--accent); line-height: 1.1; }
+.appraisal .total small { font-size: 16px; font-weight: 500; color: var(--muted); }
+.appraisal .line { display:flex; justify-content: space-between; gap: 10px; padding: 4px 0; border-bottom: 1px dashed var(--line); font-variant-numeric: tabular-nums; }
+.appraisal .line.sum { border-bottom: 0; font-weight: 700; padding-top: 8px; }
+.appraisal .why { font-size: 13px; color: var(--muted); margin-top: 10px; }
+.appraisal .why b { color: var(--text); }
+.appraisal .wide { width: 100%; margin-top: 14px; padding: 10px; border-radius: 8px; }
+.appraisal details { margin-top: 14px; font-size: 13px; color: var(--muted); }
+.appraisal details table { width: 100%; border-collapse: collapse; margin-top: 6px; }
+.appraisal details td, .appraisal details th { padding: 3px 4px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
+
+.appraisal .mtotal { display: none; }
+@media (max-width: 760px) {
+  .appraisal aside { position: static; }
+  .appraisal .mtotal { display: flex; align-items: baseline; gap: 8px; position: sticky; bottom: 0; z-index: 5;
+    margin: 0 -12px; padding: 10px 16px; background: var(--panel); border-top: 1px solid var(--line);
+    box-shadow: 0 -4px 12px rgba(0,0,0,.12); font-size: 14px; color: var(--muted); }
+  .appraisal .mtotal b { font-size: 24px; color: var(--accent); }
+  .appraisal .mtotal a { margin-left: auto; color: var(--accent); font-size: 13px; }
+}
+@media (max-width: 600px) {
+  .appraisal .opts { grid-template-columns: 1fr 1fr; }
+  .appraisal label.opt { grid-template-columns: auto 1fr; padding: 8px; gap: 6px 8px; }
+  .appraisal label.opt .val { grid-column: 1 / -1; justify-self: end; margin-top: -4px; }
+  .appraisal label.opt img { height: 72px; }
+  .appraisal .hint { font-size: 11px; }
+}
+
+#appraiser .apick { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+#appraiser .apick button { border-radius: 999px; padding: 6px 14px; }
+#appraiser .apick button.on { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+.appraisal[hidden] { display: none; }
+.appraisal .atitle { font-size: 18px; text-transform: none; letter-spacing: 0; color: var(--text); margin: 0 0 2px; }
+.appraisal .sub { margin-bottom: 12px; }
+/* hands: tall pictures, small control icons */
+#hands label.opt img { height: 120px; }
+#hands .opts.icons label.opt img { height: 56px; }
+#hands .opts.icons label.opt:not(:has(img)) { align-content: end; }
+@media (max-width: 600px) {
+  #hands label.opt img { height: 90px; }
+  #hands .opts.icons label.opt img { height: 44px; }
+}

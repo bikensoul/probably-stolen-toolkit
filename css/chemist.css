@@ -1,0 +1,66 @@
+/* ---------- chemist ---------- */
+#chemist .layout { display: grid; grid-template-columns: 1fr 300px; gap: 16px; align-items: start; }
+@media (max-width: 760px) { #chemist .layout { grid-template-columns: 1fr; } }
+#chemist aside { position: sticky; top: 110px; }
+#chemist .rhead { display:flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 10px; }
+#chemist .tag { font-size: 12px; text-transform: none; letter-spacing: 0; color: var(--muted); font-weight: 500; margin-left: 6px; }
+#chemist button.ghost { padding: 5px 10px; font-size: 13px; color: var(--muted); }
+#chemist .progress { height: 6px; background: var(--bg); border-radius: 3px; overflow: hidden; margin-bottom: 12px; }
+#chemist .bar { height: 100%; width: 0; background: var(--good); transition: width .2s; }
+#chemist .step { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; padding: 10px 12px;
+                 border: 1px solid var(--line); border-radius: 8px; margin-bottom: 6px; }
+#chemist .step.sub { margin-left: 22px; }
+#chemist .step > label { display: flex; gap: 10px; align-items: flex-start; flex: 1 1 340px; cursor: pointer; }
+#chemist .step input[type=checkbox] { width: 18px; height: 18px; margin: 2px 0 0; flex: none; accent-color: var(--good); }
+#chemist .step.done { background: var(--sel); }
+#chemist .step.done > label span { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--muted); }
+#chemist .calc { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+#chemist .calc.col { flex-direction: column; align-items: stretch; }
+#chemist .fld { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); }
+#chemist .fld input { width: 80px; padding: 6px 8px; font: inherit; color: var(--text); background: var(--bg);
+                      border: 1px solid var(--line); border-radius: 6px; }
+#chemist .calc.col .fld { justify-content: space-between; }
+#chemist .calc.col .fld span:first-child { flex: 1; }
+#chemist .fld input:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+#chemist .res { font-size: 14px; white-space: nowrap; }
+#chemist .res b { color: var(--accent); font-size: 16px; }
+#chemist .warnbox { flex-basis: 100%; margin-left: 28px; font-size: 13px; color: var(--warn); }
+#chemist .opts-list { flex-basis: 100%; margin: 0 0 0 28px; padding-left: 18px; font-size: 14px; color: var(--muted); }
+#chemist .yield { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
+#chemist .yres { margin-top: 10px; font-size: 15px; }
+#chemist .yres .big { font-size: 28px; font-weight: 700; color: var(--accent); }
+#chemist .ppout { margin: 12px 0; }
+#chemist .ppout .price { font-size: 30px; font-weight: 800; color: var(--accent); line-height: 1.1; }
+#chemist .grades { width: 100%; border-collapse: collapse; font-size: 13px; }
+#chemist .grades td { padding: 4px 6px; }
+#chemist .grades td:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+#chemist .grades tr.hit { outline: 2px solid var(--accent); outline-offset: -2px; }
+#chemist .sw { display:inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+#chemist .machines { margin: 0; padding-left: 18px; font-size: 13px; color: var(--muted); }
+#chemist .machines li { margin-bottom: 6px; }
+#chemist .machines b { color: var(--text); }
+
+#chemist .batchres { flex-basis: 100%; font-size: 14px; }
+#chemist .batchres b { color: var(--accent); font-size: 16px; }
+#chemist .batches { flex-basis: 100%; display: flex; flex-wrap: wrap; gap: 6px; margin-left: 28px; }
+#chemist .chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; font-size: 13px;
+                 border: 1px solid var(--line); border-radius: 999px; cursor: pointer; }
+#chemist .chip input { width: 14px; height: 14px; margin: 0; accent-color: var(--good); }
+#chemist .chip.on { background: var(--sel); color: var(--muted); text-decoration: line-through; }
+#chemist .rpick { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+#chemist .rpick button { border-radius: 999px; padding: 6px 14px; }
+#chemist .rpick button.on { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+#chemist .recipe[hidden] { display: none; }
+#chemist .fld select { padding: 6px 8px; font: inherit; color: var(--text); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; }
+#chemist .res { white-space: normal; }
+
+@media (max-width: 600px) {
+  #chemist .step { padding: 10px; }
+  #chemist .step.sub { margin-left: 12px; }
+  #chemist .calc:not(.col) { flex-direction: column; align-items: stretch; gap: 8px; }
+  #chemist .fld { justify-content: space-between; }
+  #chemist .fld span:first-child { flex: 1; }
+  #chemist .fld input, #chemist .fld select { width: 110px; }
+  #chemist .warnbox, #chemist .opts-list { margin-left: 0; }
+  #chemist aside { position: static; }
+}

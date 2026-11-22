@@ -1,0 +1,20 @@
+/* ---------- water ---------- */
+#water { max-width: 760px; }
+#water .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+#water label { display:block; font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+#water input, #water select { width:100%; padding: 8px 10px; font: inherit; color: var(--text);
+        background: var(--bg); border:1px solid var(--line); border-radius: 6px; }
+#water input:focus, #water select:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+#water .result { margin-top: 16px; padding: 14px; border-radius: 8px; border:1px solid var(--line); background: var(--bg); }
+#water .big { font-size: 30px; font-weight: 700; color: var(--accent); }
+#water .big small { font-size: 15px; font-weight: 500; color: var(--muted); }
+#water .row { display:flex; justify-content:space-between; gap: 12px; padding: 4px 0; border-bottom: 1px dashed var(--line); }
+#water .row:last-child { border-bottom: 0; }
+#water .row span:first-child { color: var(--muted); }
+#water .msg { font-weight: 600; margin-bottom: 8px; }
+#water table { width:100%; border-collapse: collapse; }
+#water td, #water th { padding: 4px; text-align:left; }
+#water th { font-size: 13px; color: var(--muted); font-weight: 500; }
+#water button.x { padding: 4px 9px; color: var(--muted); }
+#water .actions { display:flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+

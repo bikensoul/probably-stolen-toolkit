@@ -1,0 +1,36 @@
+/* ---------- projector ---------- */
+#projector .pgrid { display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+#projector label { display:block; font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+#projector select { width:100%; padding: 8px 10px; font: inherit; color: var(--text); background: var(--bg); border:1px solid var(--line); border-radius: 6px; }
+#projector input { width:100%; padding: 8px 10px; font: inherit; color: var(--text); background: var(--bg); border:1px solid var(--line); border-radius: 6px; }
+#projector input:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+#projector .hint { display:block; font-size: 12px; color: var(--muted); margin-top: 3px; }
+#projector .pjstats { display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 18px; }
+#projector .k { font-size: 13px; color: var(--muted); }
+#projector .vbig { font-size: 32px; font-weight: 800; color: var(--accent); line-height: 1.15; font-variant-numeric: tabular-nums; }
+#projector .abar { position: relative; height: 26px; border-radius: 4px; background: var(--line); margin: 8px 0 44px; }
+#projector .seg { position:absolute; top:0; bottom:0; display:flex; align-items:center; justify-content:center; font-size: 12px; font-weight: 600; color: #fff; overflow:hidden; white-space: nowrap; }
+#projector .seg.base { background: #6fa84f; border-radius: 4px 0 0 4px; }
+#projector .seg.proj { background: #a46fb1; }
+#projector .tick { position:absolute; top: 100%; transform: translateX(-50%); text-align:center; font-size: 11px; color: var(--muted); padding-top: 4px; }
+#projector .tick::before { content:""; display:block; width:2px; height: 6px; background: var(--muted); margin: 0 auto 2px; }
+#projector .tick.hit { color: var(--good); font-weight: 700; }
+#projector .tick.hit::before { background: var(--good); }
+#projector .pjnext { font-size: 14px; }
+#projector .pjnext b { color: var(--accent); }
+#projector .perks { width:100%; border-collapse: collapse; font-size: 14px; }
+#projector .perks td { padding: 6px 8px; border-bottom: 1px solid var(--line); }
+#projector .perks td:first-child { width: 70px; font-variant-numeric: tabular-nums; font-weight: 600; }
+#projector .perks tr.hit td { color: var(--text); }
+#projector .perks tr.miss td { color: var(--muted); }
+#projector .perks tr.hit td:first-child::before { content: "✓ "; color: var(--good); }
+
+@media (max-width: 600px) {
+  #projector .pjstats { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  #projector .vbig { font-size: 22px; }
+  #projector .k, #projector .hint { font-size: 11px; }
+  #projector .abar { margin-bottom: 56px; }
+  #projector .tick { font-size: 10px; }
+  #projector .tick.low { padding-top: 18px; }
+  #projector .tick.low::before { height: 20px; }
+}

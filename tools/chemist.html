@@ -1,0 +1,219 @@
+<div class="tab" id="chemist">
+  <h1>Chemist</h1>
+  <p class="sub">Tick off each step as you go. Enter what the Chem Scanner shows and the amounts appear right next to the step.</p>
+
+  <div class="layout">
+    <div>
+      <div class="rpick" id="rpick">
+        <button data-pick="caffeine">Caffeine Pill</button>
+        <button data-pick="dreamdust">Dream Dust</button>
+        <button data-pick="nightmare">Nightmare Dust</button>
+      </div>
+      <section class="recipe" data-recipe="caffeine">
+        <div class="rhead">
+          <h2 style="margin:0">Caffeine Pill <span class="tag">5 mL · legal</span></h2>
+          <button class="ghost" data-reset>Reset steps</button>
+        </div>
+        <div class="progress"><div class="bar"></div></div>
+
+        <div class="step"><label><input type="checkbox"><span><b>1.</b> Blend the beans.</span></label></div>
+
+        <div class="step">
+          <label><input type="checkbox"><span><b>2.</b> Add <b>Lipobond Agent</b> <b>before heating</b> until no fat remains. The fat is gone in a few ticks; leftover Lipobond boils off later.</span></label>
+          <div class="calc">
+            <div class="fld"><span>Fat</span><input type="number" min="0" step="0.1" id="c_fat" placeholder="0"><span>mL</span></div>
+            <div class="fld"><span>Lipobond concentration</span><input type="number" min="0" max="100" step="0.1" id="c_lipoConc" placeholder="100"><span>%</span></div>
+            <div class="res" id="c_lipo">–</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <label><input type="checkbox"><span><b>3.</b> Scan your blended solution for its coffee mush concentration, fill the measuring cup with it and add <b>alcohol</b>.</span></label>
+          <div class="calc">
+            <div class="fld"><span>Coffee mush concentration</span><input type="number" min="0" max="100" step="0.1" id="c_mushPct" placeholder="scan"><span>%</span></div>
+            <div class="fld"><span>Cup size</span><select id="c_batch" data-default="50"><option value="1">1 mL</option><option value="5">5 mL</option><option value="25">25 mL</option><option value="50" selected>50 mL</option><option value="100">100 mL</option><option value="250">250 mL</option><option value="450">450 mL</option><option value="750">750 mL</option><option value="2000">2000 mL</option><option value="3000">3000 mL</option><option value="6000">6000 mL</option></select></div>
+          </div>
+          <div class="batchres" id="c_batchres"></div>
+        </div>
+
+        <div class="step">
+          <label><input type="checkbox"><span><b>4.</b> Heat to <b>50–78 °C</b> until no mush is left. Then add the next cup of solution and repeat until all of it is used.</span></label>
+          <div class="warnbox">Don't go to 80 °C: water starts extracting at only 12.5% yield and takes mush from the alcohol. Alcohol boils off above 78 °C.</div>
+        </div>
+
+        <div class="step">
+          <label><input type="checkbox"><span><b>5a.</b> Add <b>acid or base</b> equal to the protein.</span></label>
+          <div class="calc">
+            <div class="fld"><span>Protein</span><input type="number" min="0" step="0.1" id="c_prot" placeholder="0"><span>mL</span></div>
+            <div class="fld"><span>Bottle concentration</span><input type="number" min="0" max="100" step="0.1" id="c_conc" placeholder="100"><span>%</span></div>
+            <div class="res" id="c_ab">–</div>
+          </div>
+        </div>
+        <div class="step sub">
+          <label><input type="checkbox"><span><b>5b.</b> If more than 0.5 mL is left over, add 1 mL of the other one.</span></label>
+          <div class="calc">
+            <div class="fld"><span>Left over</span><input type="number" min="0" step="0.1" id="c_left" placeholder="0"><span>mL</span></div>
+            <div class="fld"><span>Other bottle's concentration</span><input type="number" min="0" max="100" step="0.1" id="c_conc2" placeholder="100"><span>%</span></div>
+            <div class="res" id="c_leftres">–</div>
+          </div>
+        </div>
+        <div class="step"><label><input type="checkbox"><span><b>6.</b> Use a <b>Kotton filter</b>.</span></label></div>
+        <div class="step"><label><input type="checkbox"><span><b>7.</b> Use a <b>water filter</b>.</span></label></div>
+
+        <div class="step">
+          <label><input type="checkbox"><span><b>8.</b> Remove the water and alcohol, by either:</span></label>
+          <ul class="opts-list">
+            <li>evaporating overnight, <b>or</b></li>
+            <li>with a plate module, heating above <b>100 °C</b> until water and alcohol both read 0. Caffeine doesn't break down with heat, but do this only once all the mush is gone.</li>
+          </ul>
+        </div>
+        <div class="step"><label><input type="checkbox"><span><b>9.</b> Finish in the Chem Finisher. Select <b>Caffeine Pill</b> in its configuration first.</span></label></div>
+
+        <div class="yield">
+          <h2>Expected yield</h2>
+          <div class="calc">
+            <div class="fld"><span>Total solution</span><input type="number" min="0" step="0.1" id="y_sol" placeholder="0"><span>mL</span></div>
+            <div class="fld"><span>Caffeine already in beans</span><input type="number" min="0" step="0.1" id="y_caf" placeholder="0"><span>mL</span></div>
+          </div>
+          <div class="yres" id="y_out"></div>
+          <p class="note">75% of the coffee mush turns into caffeine, on top of the caffeine already in the beans. Every 5 mL of caffeine makes one pill. Recipe credits: TheNikita and Owlie.</p>
+        </div>
+      </section>
+
+      <section class="recipe" data-recipe="dreamdust">
+        <div class="rhead">
+          <h2 style="margin:0">Dream Dust <span class="tag">2 mL · medium contraband</span></h2>
+          <button class="ghost" data-reset>Reset steps</button>
+        </div>
+        <div class="progress"><div class="bar"></div></div>
+
+        <div class="step"><label><input type="checkbox"><span><b>1.</b> Blend the Dream Caps.</span></label></div>
+
+        <div class="step">
+          <label><input type="checkbox"><span><b>2.</b> Scan your blended caps for their mush concentration and pour <b>alcohol</b> into a second container. Then add the blended caps one measuring cup at a time. The alcohol isn't used up, so it works for every cup.</span></label>
+          <div class="calc">
+            <div class="fld"><span>Mush concentration</span><input type="number" min="0" max="100" step="0.1" id="d_pct" placeholder="scan"><span>%</span></div>
+            <div class="fld"><span>Cup size</span><select id="d_cup" data-default="25"><option value="1">1 mL</option><option value="5">5 mL</option><option value="25" selected>25 mL</option><option value="50">50 mL</option><option value="100">100 mL</option><option value="250">250 mL</option><option value="450">450 mL</option><option value="750">750 mL</option><option value="2000">2000 mL</option><option value="3000">3000 mL</option><option value="6000">6000 mL</option></select></div>
+          </div>
+          <div class="batchres" id="d_batchres"></div>
+        </div>
+
+        <div class="step">
+          <label><input type="checkbox"><span><b>3.</b> Heat to <b>40–49 °C</b> until no mush is left. Then add the next cup of blended caps and repeat until all of it is used.</span></label>
+          <div class="warnbox">From 50 °C the mush turns into plant matter before it's extracted, and the extract itself breaks down from 60 °C.</div>
+        </div>
+
+        <div class="step">
+          <label><input type="checkbox"><span><b>4a.</b> Add <b>acid or base</b> equal to the protein and wait until it reads 0.</span></label>
+          <div class="calc">
+            <div class="fld"><span>Protein</span><input type="number" min="0" step="0.1" id="d_prot" placeholder="0"><span>mL</span></div>
+            <div class="fld"><span>Bottle concentration</span><input type="number" min="0" max="100" step="0.1" id="d_conc" placeholder="100"><span>%</span></div>
+            <div class="res" id="d_ab">–</div>
+          </div>
+        </div>
+        <div class="step sub">
+          <label><input type="checkbox"><span><b>4b.</b> If more than 0.5 mL is left over, add 1 mL of the other one to cancel it out.</span></label>
+          <div class="calc">
+            <div class="fld"><span>Left over</span><input type="number" min="0" step="0.1" id="d_left" placeholder="0"><span>mL</span></div>
+            <div class="fld"><span>Other bottle's concentration</span><input type="number" min="0" max="100" step="0.1" id="d_conc2" placeholder="100"><span>%</span></div>
+            <div class="res" id="d_leftres">–</div>
+          </div>
+        </div>
+
+        <div class="step"><label><input type="checkbox"><span><b>5.</b> Use a <b>Kotton filter</b>.</span></label></div>
+        <div class="step"><label><input type="checkbox"><span><b>6.</b> Use a <b>water filter</b>.</span></label></div>
+        <div class="step"><label><input type="checkbox"><span><b>7.</b> Evaporate overnight.</span></label></div>
+        <div class="step"><label><input type="checkbox"><span><b>8.</b> Finish in the Chem Finisher. Select <b>Dream Dust</b> in its configuration first.</span></label></div>
+
+        <div class="yield">
+          <h2>Expected yield</h2>
+          <div class="calc">
+            <div class="fld"><span>Total blended caps</span><input type="number" min="0" step="0.1" id="d_ysol" placeholder="0"><span>mL</span></div>
+          </div>
+          <div class="yres" id="d_yout"></div>
+          <p class="note">Half the mush turns into extract, and every 2 mL of extract makes one dust. Dream Caps always have the same contents, so a fully upgraded setup gets Lab Pure every time. The rare exception is a dirty acid or base bottle (about 1 in 40) that drops you just under 99%. If that happens, use another bottle.</p>
+        </div>
+      </section>
+
+      <section class="recipe" data-recipe="nightmare">
+        <div class="rhead">
+          <h2 style="margin:0">Nightmare Dust <span class="tag">4 mL · high contraband</span></h2>
+          <button class="ghost" data-reset>Reset steps</button>
+        </div>
+        <div class="progress"><div class="bar"></div></div>
+
+        <div class="step"><label><input type="checkbox"><span><b>1.</b> Blend the Nightmare Caps.</span></label></div>
+
+        <div class="step">
+          <label><input type="checkbox"><span><b>2.</b> Scan your blended caps for their mush concentration and pour <b>alcohol</b> into a second container. Then add the blended caps one measuring cup at a time. The alcohol isn't used up, so it works for every cup.</span></label>
+          <div class="calc">
+            <div class="fld"><span>Mush concentration</span><input type="number" min="0" max="100" step="0.1" id="n_pct" placeholder="scan"><span>%</span></div>
+            <div class="fld"><span>Cup size</span><select id="n_cup" data-default="25"><option value="1">1 mL</option><option value="5">5 mL</option><option value="25" selected>25 mL</option><option value="50">50 mL</option><option value="100">100 mL</option><option value="250">250 mL</option><option value="450">450 mL</option><option value="750">750 mL</option><option value="2000">2000 mL</option><option value="3000">3000 mL</option><option value="6000">6000 mL</option></select></div>
+          </div>
+          <div class="batchres" id="n_batchres"></div>
+        </div>
+
+        <div class="step">
+          <label><input type="checkbox"><span><b>3.</b> Heat to <b>40–49 °C</b> until no mush is left. Then add the next cup of blended caps and repeat until all of it is used.</span></label>
+          <div class="warnbox">This matters even more here: Nightmare Extract breaks down quickly from 50 °C and loses about half per tick at 60 °C.</div>
+        </div>
+
+        <div class="step">
+          <label><input type="checkbox"><span><b>4a.</b> Add <b>acid or base</b> equal to the protein and wait until it reads 0.</span></label>
+          <div class="calc">
+            <div class="fld"><span>Protein</span><input type="number" min="0" step="0.1" id="n_prot" placeholder="0"><span>mL</span></div>
+            <div class="fld"><span>Bottle concentration</span><input type="number" min="0" max="100" step="0.1" id="n_conc" placeholder="100"><span>%</span></div>
+            <div class="res" id="n_ab">–</div>
+          </div>
+        </div>
+        <div class="step sub">
+          <label><input type="checkbox"><span><b>4b.</b> If more than 0.5 mL is left over, add 1 mL of the other one to cancel it out.</span></label>
+          <div class="calc">
+            <div class="fld"><span>Left over</span><input type="number" min="0" step="0.1" id="n_left" placeholder="0"><span>mL</span></div>
+            <div class="fld"><span>Other bottle's concentration</span><input type="number" min="0" max="100" step="0.1" id="n_conc2" placeholder="100"><span>%</span></div>
+            <div class="res" id="n_leftres">–</div>
+          </div>
+        </div>
+
+        <div class="step"><label><input type="checkbox"><span><b>5.</b> Use a <b>Kotton filter</b>.</span></label></div>
+        <div class="step"><label><input type="checkbox"><span><b>6.</b> Use a <b>water filter</b>.</span></label></div>
+        <div class="step"><label><input type="checkbox"><span><b>7.</b> Evaporate overnight.</span></label></div>
+        <div class="step"><label><input type="checkbox"><span><b>8.</b> Finish in the Chem Finisher. Select <b>Nightmare Dust</b> in its configuration first.</span></label></div>
+
+        <div class="yield">
+          <h2>Expected yield</h2>
+          <div class="calc">
+            <div class="fld"><span>Total blended caps</span><input type="number" min="0" step="0.1" id="n_ysol" placeholder="0"><span>mL</span></div>
+          </div>
+          <div class="yres" id="n_yout"></div>
+          <p class="note">Half the mush turns into extract, and every 4 mL of extract makes one dust.</p>
+        </div>
+      </section>
+
+    </div>
+
+    <aside>
+      <section>
+        <h2>Price by purity</h2>
+        <div class="calc col">
+          <div class="fld"><span>Base value</span><input type="number" min="0" step="1" id="pp_base" placeholder="0"><span>Cr</span></div>
+          <div class="fld"><span>Purity</span><input type="number" min="0" max="100" step="0.1" id="pp_pur" placeholder="0"><span>%</span></div>
+        </div>
+        <div id="pp_out" class="ppout"></div>
+        <table class="grades" id="gradeTable"></table>
+        <p class="note">Some customers carry a Chem Scanner to check the purity on your label.</p>
+      </section>
+      <section>
+        <h2>Machines</h2>
+        <ul class="machines">
+          <li><b>Chem Scanner:</b> shows the composition of a container or product.</li>
+          <li><b>Blender:</b> upgrades improve extraction yield.</li>
+          <li><b>Heating Plate:</b> upgrades raise max temperature, temperature control and heating speed.</li>
+          <li><b>Evaporator:</b> works overnight to remove liquids such as water and alcohol. Uses normal modules.</li>
+          <li><b>Chem Finisher:</b> upgrades reduce the impurity it adds.</li>
+          <li>Most chemistry machines can only be upgraded with the <b>Chemical Equipment Module</b>.</li>
+        </ul>
+      </section>
+    </aside>
+  </div>
+</div>

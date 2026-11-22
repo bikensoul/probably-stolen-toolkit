@@ -1,0 +1,63 @@
+<div class="tab" id="water">
+  <h1>Water Mix Calculator</h1>
+  <p class="sub">Lift water to High-Quality (≥ 99%) and mix mineral water for plants.</p>
+
+  <section>
+    <h2>1 · Top up a container</h2>
+    <div class="grid">
+      <div><label for="v1">Water in container (L)</label><input id="v1" type="number" min="0" step="0.1" value="4"></div>
+      <div><label for="p1">Its purity (%)</label><input id="p1" type="number" min="0" max="100" step="0.1" value="97.5"></div>
+      <div><label for="p2">Purity of water you add (%)</label><input id="p2" type="number" min="0" max="100" step="0.1" value="100"></div>
+      <div><label for="t">Target purity (%)</label><input id="t" type="number" min="0" max="100" step="0.1" value="99"></div>
+      <div><label for="cap">Container capacity (L, optional)</label><input id="cap" type="number" min="0" step="0.1" placeholder="e.g. 6"></div>
+      <div><label for="step">Round amount up to</label>
+        <select id="step">
+          <option value="0.01">0.01 L</option>
+          <option value="0.05">0.05 L</option>
+          <option value="0.1" selected>0.1 L</option>
+          <option value="0.25">0.25 L</option>
+          <option value="0.5">0.5 L</option>
+          <option value="1">1 L</option>
+        </select></div>
+    </div>
+    <div class="result" id="out"></div>
+    <p class="note">Formula: <code>add = volume × (target − purity) ÷ (added purity − target)</code>. If the game rounds the displayed purity, set the target to something like 99.05 for a safety margin.</p>
+  </section>
+
+  <section>
+    <h2>2 · Combine several containers (optional)</h2>
+    <table>
+      <thead><tr><th>Litres</th><th>Purity %</th><th></th></tr></thead>
+      <tbody id="mixRows"></tbody>
+    </table>
+    <div class="actions">
+      <button id="addRow">+ Add container</button>
+      <button id="useMix" class="primary">Use total in section 1</button>
+      <button id="useMix3">Use total in section 3</button>
+    </div>
+    <div class="result" id="mixOut"></div>
+  </section>
+
+  <section>
+    <h2>3 · Maximum high-quality water from your stock</h2>
+    <div class="grid">
+      <div><label for="m_v1">Low-grade water you have (L)</label><input id="m_v1" type="number" min="0" step="0.1" value="5"></div>
+      <div><label for="m_p1">Its purity (%)</label><input id="m_p1" type="number" min="0" max="100" step="0.1" value="98"></div>
+      <div><label for="m_v2">Clean water you have (L)</label><input id="m_v2" type="number" min="0" step="0.1" value="3"></div>
+      <div><label for="m_p2">Clean water purity (%)</label><input id="m_p2" type="number" min="0" max="100" step="0.1" value="100"></div>
+    </div>
+    <p class="note">Uses the target purity and rounding step from section 1.</p>
+    <div class="result" id="maxOut"></div>
+  </section>
+
+  <section>
+    <h2>4 · Mineral water for plants</h2>
+    <div class="grid">
+      <div><label for="mn_tabs">Mineral tablets</label><input id="mn_tabs" type="number" min="0" step="1" value="1"></div>
+      <div><label for="mn_conc">Target concentration (%)</label><input id="mn_conc" type="number" min="0" max="100" step="0.1" placeholder="per plant"></div>
+      <div><label for="mn_size">Tablet size (mL, 100%)</label><input id="mn_size" type="number" min="0" step="0.1" value="15"></div>
+    </div>
+    <div class="result" id="mnOut"></div>
+    <p class="note">Assumes the water you add has no minerals in it. Each plant needs a different concentration, so enter the one for the plant you're growing.</p>
+  </section>
+</div>

@@ -8,7 +8,7 @@
 .appraisal label.opt:has(input:checked) { background: var(--sel); border-color: var(--accent); }
 .appraisal label.opt input { width: 17px; height: 17px; margin: 0; accent-color: var(--accent); }
 .appraisal label.opt img { grid-column: 1 / -1; width: auto; height: 96px; justify-self: center;
-            image-rendering: pixelated; border-radius: 4px; display:block; }
+            image-rendering: auto; border-radius: 4px; display:block; }
 .appraisal .name { flex: 1; }
 .appraisal .hint { display:block; font-size: 12px; color: var(--muted); }
 .appraisal .val { font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
@@ -49,15 +49,15 @@
 .appraisal .atitle { font-size: 18px; text-transform: none; letter-spacing: 0; color: var(--text); margin: 0 0 2px; }
 .appraisal .sub { margin-bottom: 12px; }
 /* hands: tall pictures, small control icons */
-#hands label.opt img { height: 120px; }
-#hands .opts.icons label.opt img { height: 56px; }
+#hands label.opt img { height: 170px; }
+#hands .opts.icons label.opt img { height: 72px; }
 #hands .opts.icons label.opt:not(:has(img)) { align-content: end; }
 @media (max-width: 600px) {
-  #hands label.opt img { height: 90px; }
-  #hands .opts.icons label.opt img { height: 44px; }
+  #hands label.opt img { height: 130px; }
+  #hands .opts.icons label.opt img { height: 56px; }
 }
 /* ribwich */
-#ribwich .rexample { display: block; width: 100%; max-width: 560px; margin: 0 auto; image-rendering: pixelated; border-radius: 6px; }
+#ribwich .rexample { display: block; width: 100%; max-width: 560px; margin: 0 auto; image-rendering: auto; border-radius: 6px; }
 #ribwich .rfields { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; }
 #ribwich .rfield { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--muted); }
 #ribwich .rfield input { width: 160px; padding: 8px 10px; font: inherit; font-size: 16px; color: var(--text); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; }
@@ -70,3 +70,13 @@
 #ribwich .opts.icons label.opt img { height: 48px; }
 #ribwich .fakebox { margin-top: 10px; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--bad); color: var(--bad); font-size: 14px; }
 #ribwich .fakebox ul { margin: 6px 0 0; padding-left: 18px; color: var(--text); font-size: 13px; }
+
+/* zoom button on every picture + full-size viewer */
+.appraisal label.opt { position: relative; }
+.appraisal .zoom { position: absolute; top: 6px; right: 6px; width: 28px; height: 28px; padding: 0; border-radius: 6px;
+  border: 1px solid var(--line); background: var(--panel); color: var(--muted); font-size: 15px; line-height: 1; cursor: zoom-in; opacity: .85; }
+.appraisal .zoom:hover { color: var(--accent); border-color: var(--accent); opacity: 1; }
+.zoomview { position: fixed; inset: 0; z-index: 50; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+  background: rgba(10, 14, 18, .82); cursor: zoom-out; padding: 16px; }
+.zoomview img { max-width: 92vw; max-height: 78vh; min-height: min(60vh, 420px); width: auto; image-rendering: pixelated; border-radius: 8px; background: #c5c4ad; }
+.zoomview span { color: #fff; font-size: 15px; }

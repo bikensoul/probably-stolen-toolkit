@@ -47,7 +47,8 @@ Toolkit.tools.hands = () => {
     for (const set of SETS) {
       const checks = set.checks(s), missing = checks.filter(c => !c[0]).map(c => c[1]);
       if (!missing.length) { lines.push([`${set.name} set bonus`, set.bonus]); why += `<b>${set.name} set bonus applies.</b> `; }
-      else if (missing.length < checks.length && (!best || missing.length < best.missing.length)) best = { set, missing };
+      // hint only when the material already fits the set (otherwise it's noise)
+      else if (checks[0][0] && (!best || missing.length < best.missing.length)) best = { set, missing };
     }
     if (!why && best && best.missing.length <= 2)
       why = `<b>${best.set.name} set (+${best.set.bonus})</b> would also need: ${best.missing.join(", ")}.`;

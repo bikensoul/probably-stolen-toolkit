@@ -10,7 +10,7 @@ const Toolkit = { tools: {} };
 const VERSION = document.querySelector('meta[name="toolkit-version"]')?.content || Date.now();
 const TOOLS = ["home", "water", "appraiser", "chemist", "projector"];
 // Old or direct links to an item inside a tab: #plasma opens the Appraiser on that item.
-const ALIASES = { plasma: "appraiser", hands: "appraiser" };
+const ALIASES = { plasma: "appraiser", hands: "appraiser", ribwich: "appraiser" };
 
 /* ---------- remembered inputs (this browser only) ---------- */
 const STORE_PREFIX = "ps:";

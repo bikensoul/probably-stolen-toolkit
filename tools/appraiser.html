@@ -4,6 +4,7 @@
   <div class="apick" id="apick">
     <button data-pick="plasma">Plasma Cartridge</button>
     <button data-pick="hands">Cybernetic Hand</button>
+    <button data-pick="ribwich">Ribwich</button>
   </div>
 
 <div class="appraisal" id="plasma" data-item="plasma">
@@ -139,6 +140,96 @@
           </table>
           <p>Base value 100, minimum value 50.</p>
         </details>
+      </section>
+    </aside>
+  </div>
+</div>
+
+<div class="appraisal" id="ribwich" data-item="ribwich">
+  <h2 class="atitle">Ribwich</h2>
+  <p class="sub">Based on the Station Trade Commission guide. Anything counterfeit is worth 40 Credits.</p>
+
+  <div class="layout">
+    <div>
+      <section>
+        <img class="rexample" src="img/ribwich/example.png" alt="Example of a genuine second-run Ribwich">
+        <p class="why" style="margin-top:6px">Genuine example from the 2nd run: production date next to the barcode, packing facility on the label, Ribwich sticker and Davre logo on the bun.</p>
+      </section>
+
+      <section>
+        <h2>1 · Packaging</h2>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="rpack" value="ok" checked><span class="name">Sealed<span class="hint">plastic packaging intact</span></span><span class="val zero">±0</span></label>
+          <label class="opt"><input type="radio" name="rpack" value="bad"><span class="name">Missing or torn open<span class="hint">always worth 40</span></span><span class="val neg">= 40</span></label>
+        </div>
+      </section>
+
+      <section>
+        <h2>2 · Production date</h2>
+        <div class="rfields">
+          <label class="rfield"><span>Date on the packaging (MM/YYY)</span><input type="text" id="rDate" inputmode="numeric" placeholder="e.g. 01/433" autocomplete="off"></label>
+          <label class="opt inline"><input type="checkbox" id="rDateMissing"><span class="name">No date / unreadable</span></label>
+        </div>
+        <div class="rcheck" id="rDateRes"></div>
+        <p class="why">Valid runs: 1st 01/425 – 12/429 (+80), 2nd 01/432 – 12/438. The very first and last month, 01/425 and 12/438, are worth +50 extra.</p>
+      </section>
+
+      <section>
+        <h2>3 · Packing facility</h2>
+        <div class="rfields">
+          <label class="rfield"><span>Facility number</span><input type="number" id="rFac" min="1" max="35" step="1" placeholder="1 – 35"></label>
+          <label class="opt inline"><input type="checkbox" id="rFacMissing"><span class="name">No number / unreadable</span></label>
+        </div>
+        <div class="rcheck" id="rFacRes"></div>
+        <p class="why">High quality (+50): 01, 02, 05, 08, 21, 34. Low quality (−50): 07, 15, 18, 26, 31. Valid numbers are 1 – 35.</p>
+      </section>
+
+      <section>
+        <h2>4 · Deluxe Edition</h2>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" id="rSesame"><span class="name">Sesame bun</span><span class="val zero"></span></label>
+          <label class="opt"><input type="checkbox" id="rPickles"><span class="name">Extra pickles</span><span class="val zero"></span></label>
+        </div>
+        <p class="why">Both together = Deluxe Edition (+300). Only one of them = counterfeit.</p>
+      </section>
+
+      <section>
+        <h2>5 · Double meat patty</h2>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" id="rDouble"><span class="name">Two meat patties<span class="hint">very rare</span></span><span class="val pos">+800</span></label>
+        </div>
+      </section>
+
+      <section>
+        <h2>6 · Davre logo</h2>
+        <div class="opts icons">
+          <label class="opt"><img src="img/ribwich/davre_ok.png" alt=""><input type="radio" name="rlogo" value="ok" checked><span class="name">Genuine</span><span class="val zero">±0</span></label>
+          <label class="opt"><img src="img/ribwich/davre_bad.png" alt=""><input type="radio" name="rlogo" value="bad"><span class="name">Incorrect</span><span class="val neg">fake</span></label>
+          <label class="opt"><input type="radio" name="rlogo" value="none"><span class="name">Missing</span><span class="val neg">fake</span></label>
+        </div>
+      </section>
+
+      <section>
+        <h2>7 · Ribwich sticker</h2>
+        <div class="opts icons">
+          <label class="opt"><img src="img/ribwich/sticker_ok.png" alt=""><input type="radio" name="rsticker" value="ok" checked><span class="name">Genuine</span></label>
+          <label class="opt"><img src="img/ribwich/sticker_bad.png" alt=""><input type="radio" name="rsticker" value="bad"><span class="name">Incorrect</span><span class="val neg">fake</span></label>
+          <label class="opt"><input type="radio" name="rsticker" value="none"><span class="name">No sticker</span></label>
+        </div>
+        <p class="why">2nd-run Ribwiches must have the genuine sticker. 1st-run Ribwiches never have one.</p>
+      </section>
+    </div>
+
+    <div class="mtotal" aria-hidden="true"><span>Appraised value</span><b id="rTotalMobile">150</b><span>Credits</span><a href="#rTotalAnchor">details ↓</a></div>
+
+    <aside id="rTotalAnchor">
+      <section>
+        <h2>Appraised value</h2>
+        <div class="total" id="rTotal">150 <small>Credits</small></div>
+        <div class="fakebox" id="rFake" hidden></div>
+        <div id="rBreakdown" style="margin-top:12px"></div>
+        <button id="rReset" class="primary wide">New Ribwich (reset)</button>
+        <p class="why">Base value 150, minimum value 40.</p>
       </section>
     </aside>
   </div>
